@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, redirect, url_for, make_response, flash, current_app
+from flask import Flask, request, redirect, url_for, make_response, flash, current_app, render_template
 from werkzeug.utils import secure_filename
 import match_score_calculator
 
@@ -38,7 +38,7 @@ def upload_file():
             response = make_response(csv_output)
             response.headers["Content-Disposition"] = "attachment; filename=output.csv"
             return response 
-    return current_app.send_static_file('index.html')
+    return render_template('index.html')
 
 @app.route('/static/<path:filename>')
 def send_static(filename):
